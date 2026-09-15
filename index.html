@@ -1,0 +1,61 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Text2Style — Audio Samples</title>
+  <meta name="description" content="Audio samples for Text2Style: Text-Derived Style Encoding and Instruction-Guided Emotion Editing for Expressive TTS.">
+  <meta name="theme-color" content="#ffffff">
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='3' fill='%23263c4c'/%3E%3Ctext x='16' y='24' text-anchor='middle' font-family='Arial' font-size='25' fill='white'%3ET%3C/text%3E%3C/svg%3E">
+  <link rel="stylesheet" href="styles.css?v=18">
+  <script src="samples.js?v=18" defer></script>
+  <script src="app.js?v=18" defer></script>
+</head>
+<body>
+<a class="skip-link" href="#abstract">Skip to content</a>
+<main class="container" id="top">
+  <section class="paper-block introduction">
+    <h1>Text2Style: Text-Derived Style Encoding and<br class="wide-break"> Instruction-Guided Emotion Editing for Expressive TTS</h1>
+    <p class="paper-links"><a href="#default-synthesis">[Audio Samples]</a></p>
+    <nav class="contents" aria-label="Contents"><ul>
+      <li><a href="#default-synthesis">Text-Derived Default Synthesis</a></li>
+      <li><a href="#emotion-editing">Instruction-Guided Emotion Editing</a></li>
+      <li><a href="#results">Quantitative Results</a></li>
+    </ul></nav>
+    <p id="abstract"><strong>Abstract:</strong> Instruction-conditioned TTS typically uses instructions as direct generation conditions, without explicitly modeling a text-derived default style state. We propose <span class="method-name">Text2Style</span>, a three-stage Encoding–Editing–Realization framework that learns a style state from text and edits it under optional emotion instructions. Stage I learns the state through functional-response distillation, matching responses induced by text-derived and acoustic-derived style controls in a frozen text-to-semantic (T2S) module. Stage II trains state-conditioned residual edits with multi-start objectives for target-style acquisition, conflict correction, and repeated-instruction control consistency. Stage III reuses the state to condition the T2S and Flow modules for speech generation. On held-out TextrolSpeech and LIME-Core splits, <span class="method-name">Text2Style</span> achieves E-SIM/WER of 0.8643/1.38% and 0.8736/1.50% in text-derived default synthesis and synthesis with emotion instructions, respectively, with the highest mean nMOS and eMOS among the evaluated systems.</p>
+    <figure id="framework">
+      <img src="assets/framework.png?v=3" srcset="assets/framework-2x.png?v=3 2x" width="1262" height="509" alt="Text2Style architecture: text-derived style encoding, optional state-conditioned emotion editing, and global T2S and local Flow conditioning for speech realization.">
+      <figcaption>Overview of Text2Style. (a) Encoding–Editing–Realization framework; (b) text-derived style encoding; (c) state-conditioned style editing. Reproduced from Figure 2 of the paper.</figcaption>
+    </figure>
+  </section>
+  <section class="paper-block audio-section" id="default-synthesis">
+    <h2>Text-Derived Default Synthesis</h2>
+    <p>Speech is synthesized without an emotion instruction. Text2Style uses the text-derived default style state. The four systems are compared using the same text for each example.</p>
+    <div class="shared-reference">
+      <div><strong id="speaker-reference-label">Speaker Reference</strong><p id="speaker-reference-note">The same reference is used for all six examples below.</p></div>
+      <audio controls preload="metadata" src="assets/audio/stage1/shared-reference/output_3_8_output_3_8_23725_neutral.wav" aria-labelledby="speaker-reference-label" aria-describedby="speaker-reference-note"></audio>
+    </div>
+    <div class="table-responsive" tabindex="0" role="region" aria-label="Text-derived default synthesis audio comparison">
+      <table class="audio-table"><colgroup><col class="text-column"><col span="4" class="audio-column"></colgroup>
+        <thead><tr><th scope="col">Text</th><th scope="col">Text2Style-P0 (Ours)</th><th scope="col">IndexTTS2 Native</th><th scope="col">CosyVoice3</th><th scope="col">VoxCPM2</th></tr></thead><tbody id="default-samples"></tbody>
+      </table>
+    </div>
+  </section>
+  <section class="paper-block audio-section" id="emotion-editing">
+    <h2>Instruction-Guided Emotion Editing</h2>
+    <p>An emotion instruction edits the default style state before synthesis. For each of the five texts below, three emotion instructions are compared across four systems.</p>
+    <div id="instructed-groups"></div>
+    <p class="table-note">Evaluation setting: LIME-Core.</p>
+  </section>
+  <section class="paper-block" id="results">
+    <h2>Quantitative Results</h2>
+    <p>Results reproduced from Table 1 of the paper. All baselines are fine-tuned on the same training splits used for Text2Style.</p>
+    <div class="table-responsive" tabindex="0" role="region" aria-label="TextrolSpeech results"><table class="results-table"><caption>(a) Text-only synthesis on TextrolSpeech</caption><thead><tr><th scope="col">System</th><th scope="col">E-SIM ↑</th><th scope="col">WER ↓</th><th scope="col">Spk-SIM ↑</th><th scope="col">nMOS ↑</th><th scope="col">eMOS ↑</th></tr></thead><tbody id="default-results"></tbody></table></div>
+    <div class="table-responsive" tabindex="0" role="region" aria-label="LIME-Core results"><table class="results-table"><caption>(b) Instruction-conditioned synthesis on LIME-Core</caption><thead><tr><th scope="col">System</th><th scope="col">E-SIM ↑</th><th scope="col">WER ↓</th><th scope="col">Spk-SIM ↑</th><th scope="col">nMOS ↑</th><th scope="col">eMOS ↑</th></tr></thead><tbody id="instructed-results"></tbody></table></div>
+    <p class="table-note">↑ Higher is better. ↓ Lower is better. <strong>Bold</strong> indicates the best value in each column. MOS values are mean ± 95% confidence interval. Rankings do not establish statistical significance.</p>
+    <p class="table-note">E-SIM measures paired-reference emotion agreement. Speaker similarity is lower than IndexTTS2 in both modes. Free-form and compositional instruction generalization remains untested.</p>
+  </section>
+  <footer><p>Text2Style · Audio samples</p><a href="#top">Back to top</a></footer>
+</main>
+</body>
+</html>
